@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitZone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Botão Modo Escuro -->
+    <input type="checkbox" id="toggle-theme" hidden>
+    <label for="toggle-theme" class="theme-btn">
+        <img src="darkmode.png" alt="Modo escuro" class="icone-tema">
+    </label>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="nav-bar">
+            <div class="logo">
+                <img class="img-logo" src="logo.png" alt="Logo FitZone">
+            </div>
+            <div class="search-box">
+                <input class="box-search" type="search" placeholder="Procure aqui...">
+            </div>
+            <div class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link">60%OFF</a></li>
+                <li class="dropdown">
+                    <a href="#" class="submenu">Produtos</a>
+                    <div class="dropdown-menu">
+                        <a href="#">Short</a>
+                        <a href="#">Tênis</a>
+                        <a href="#">Camisa</a>
+                        <a href="#">Bermuda</a>
+                    </div>
+                </li>
+                <li class="icon-carrinho">
+                    <button class="button-carrinho">
+                        <img class="img-carrinho" src="carrinho.png" alt="Carrinho">
+                    </button>
+                </li>
+                <li class="icon-login">
+                    <button class="button-login">
+                        <img class="img-login" src="login.png" alt="Login">
+                    </button>
+                </li>
+            </div>
+        </nav>
+    </header>
+    <!-- Carrossel -->
+    <div class="carrossel">
+        <div class="carrossel-imagens">
+            <img src="carrossel1.png" alt="Imagem 1">
+            <img src="carrossel2.jpg" alt="Imagem 2">
+            <img src="carrossel3.png" alt="Imagem 3">
+            <img src="carrossel5.png" alt="Imagem 4">
+            <img src="carrossel6.jpg" alt="Imagem 5">
+        </div>
+        <button class="anterior"><img src="seta-esquerda.png" alt="Anterior"></button>
+        <button class="proximo"><img src="seta-direita.png" alt="Próximo"></button>
+    </div>
+
+    <!-- Produtos -->
+    <section class="produtos">
+        <h2>Produtos em Destaque</h2>
+        <div class="produtos-container">
+            <div class="produto">
+                <img src="tenis1.png" alt="Tênis de Corrida">
+                <h3>Tênis de Corrida</h3>
+                <p class="preco">R$ 199,90</p>
+                <button class="btn-comprar">Adicionar ao carrinho</button>
+            </div>
+
+            <div class="produto">
+                <img src="camisa1.png" alt="Camisa Esportiva">
+                <h3>Camisa Esportiva</h3>
+                <p class="preco">R$ 89,90</p>
+                <button class="btn-comprar">Adicionar ao carrinho</button>
+            </div>
+
+            <div class="produto">
+                <img src="calcalegging.png" alt="Calça Legging Feminina">
+                <h3>Calça Legging Feminina</h3>
+                <p class="preco">R$ 99,90</p>
+                <button class="btn-comprar">Adicionar ao carrinho</button>
+            </div>
+
+            <div class="produto">
+                <img src="bermuda1.png" alt="Bermuda Masculina">
+                <h3>Bermuda Masculina</h3>
+                <p class="preco">R$ 89,90</p>
+                <button class="btn-comprar">Adicionar ao carrinho</button>
+            </div>
+        </div>
+    </section>
+    <!-- Pop-up de Descontos -->
+<div id="popup-anuncio" class="popup">
+  <div class="popup-content">
+    <button class="popup-close">&times;</button>
+    <img src="promo-banner.gif" alt="Promoção" class="popup-gif">
+    <h2>🔥 60% OFF por tempo limitado!</h2>
+    <p>Aproveite as melhores ofertas da FitZone antes que acabem!</p>
+    <a href="promocoes.html" class="popup-btn">Aproveitar Desconto</a>
+  </div>
+</div>
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="rodape">
+            <div class="col">
+                <h3>Institucional</h3>
+                <a href="#">Sobre Nós</a>
+                <a href="#">Trabalhe Conosco</a>
+            </div>
+
+            <div class="col">
+                <h3>Produtos Destaques</h3>
+                <a href="#">Tênis de Corrida</a>
+                <a href="#">Calça Legging Feminina</a>
+                <a href="#">Bermuda Masculina</a>
+            </div>
+
+            <div class="col">
+                <h3>Formas de Pagamento</h3>
+                <img src="visa.png" alt="Visa">
+                <img src="mastercard.png" alt="Mastercard">
+                <img src="pix.png" alt="Pix">
+            </div>
+
+            <div class="col">
+                <h3>Fale Conosco</h3>
+                <a href="https://www.whatsapp.com"><img src="whatsapp.png" alt="WhatsApp"></a>
+                <a href="https://mail.google.com"><img src="gmail.png" alt="Gmail"></a>
+            </div>
+
+            <div class="col">
+                <h3>Redes Sociais</h3>
+                <a href="https://www.instagram.com"><img src="instagram.png" alt="Instagram"></a>
+                <a href="https://www.facebook.com"><img src="facebook.png" alt="Facebook"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      const toggle = document.getElementById('toggle-theme');
+      toggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode', toggle.checked);
+      });
+
+      const carousel = document.querySelector('.carrossel');
+      const container = carousel.querySelector('.carrossel-imagens');
+      let slides = Array.from(container.querySelectorAll('img'));
+      const originalCount = slides.length;
+      let current = 0;
+      let intervalId;
+      const transitionTime = 600;
+
+      const firstClone = slides[0].cloneNode(true);
+      container.appendChild(firstClone);
+
+      function setSizes() {
+        const slideWidth = carousel.clientWidth;
+        slides = Array.from(container.querySelectorAll('img'));
+        const total = slides.length;
+        slides.forEach(img => {
+          img.style.width = `${slideWidth}px`;
+          img.style.height = '100%';
+          img.style.flexShrink = '0';
+        });
+        container.style.width = `${slideWidth * total}px`;
+        container.style.transition = 'none';
+        container.style.transform = `translateX(${-current * slideWidth}px)`;
+        setTimeout(() => {
+          container.style.transition = `transform ${transitionTime}ms ease-in-out`;
+        }, 20);
+      }
+
+      function goTo(index, withTransition = true) {
+        const slideWidth = carousel.clientWidth;
+        container.style.transition = withTransition ? `transform ${transitionTime}ms ease-in-out` : 'none';
+        container.style.transform = `translateX(${-index * slideWidth}px)`;
+      }
+
+      function next() {
+        current++;
+        goTo(current, true);
+        if (current === originalCount) {
+          setTimeout(() => {
+            current = 0;
+            goTo(current, false);
+          }, transitionTime);
+        }
+        restartInterval();
+      }
+
+      function prev() {
+        if (current === 0) {
+          const slideWidth = carousel.clientWidth;
+          current = originalCount;
+          goTo(current, false);
+          setTimeout(() => {
+            current = originalCount - 1;
+            goTo(current, true);
+          }, 20);
+        } else {
+          current--;
+          goTo(current, true);
+        }
+        restartInterval();
+      }
+
+      function startInterval() {
+        intervalId = setInterval(next, 4000);
+      }
+
+      function restartInterval() {
+        clearInterval(intervalId);
+        startInterval();
+      }
+
+      document.querySelector('.proximo').addEventListener('click', next);
+      document.querySelector('.anterior').addEventListener('click', prev);
+      window.addEventListener('resize', setSizes);
+      setSizes();
+      startInterval();
+    </script>
+    <script>
+  const popup = document.getElementById('popup-anuncio');
+  const popupClose = document.querySelector('.popup-close');
+  const descontoBtn = document.querySelector('.nav-link'); // botão "60%OFF"
+
+  // Exibir o pop-up (função reaproveitável)
+  function mostrarPopup() {
+    popup.style.display = 'flex';
+  }
+
+  // Fechar o pop-up
+  function fecharPopup() {
+    popup.style.display = 'none';
+  }
+
+  // Mostrar automaticamente após 3s
+  window.addEventListener('load', () => {
+    setTimeout(mostrarPopup, 3000);
+  });
+
+  // Mostrar ao clicar no botão "60%OFF"
+  descontoBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    mostrarPopup();
+  });
+
+  // Fechar ao clicar no X ou fora do conteúdo
+  popupClose.addEventListener('click', fecharPopup);
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) fecharPopup();
+  });
+</script>
+</body>
+</html>
